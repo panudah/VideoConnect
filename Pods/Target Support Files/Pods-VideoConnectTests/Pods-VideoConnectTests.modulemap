@@ -1,0 +1,6 @@
+framework module Pods_VideoConnectTests {
+  umbrella header "Pods-VideoConnectTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
