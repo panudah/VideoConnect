@@ -49,7 +49,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let model = generateRandomData()
     var storedOffsets = [Int: CGFloat]()
     var retrivedData : NSMutableDictionary!
-    var headers:NSMutableArray = NSMutableArray()
+    var headers: NSArray = []
     var headersDict : NSDictionary = NSDictionary.init(dictionary:["Newly added":NEW_JSON_KEY, "Most viewed":MOST_JSON_KEY,"Featured":FEATURED_JSON_KEY,"Recent products":PRODUCT_LIST_JSON_KEY,"Recent shops":SHOP_LIST_JSON_KEY])
     
     //var sideVC: RightMenuVC!
@@ -163,10 +163,19 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     
                     let json = result.value as! NSDictionary
                     
-                     print("----------\(json)")
+          // print("----------\(json)")
+                 var dic = NSDictionary()
+                    
+               dic = json["data"] as! NSDictionary
                     
                     
+                   // self.headers = ary_data["featured"] as! NSArray
+              print("fgfgfg \(dic)")
                     
+                    
+                    self.headers = dic["featured"] as! NSArray
+                    
+                    print("the ball \(self.headers)")
 //                    let succ =  json["success"] as! Int
 //                    // print(succ)
 //                    if succ == 1
