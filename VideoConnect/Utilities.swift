@@ -39,18 +39,18 @@ extension UserDefaults {
         
     }
     
-//    class func retriveDataForKey(key:String)-> AnyObject {
-//
-//        let defaults:UserDefaults = UserDefaults.standardstandard
-//        if let userDict = defaults.object(forKey: key) {
-//            return userDict as AnyObject
-//        }
-//        else {
-//            return [String: String]() as AnyObject
-//        }
-//
-//
-//    }
+    class func retriveDataForKey(key:String)-> AnyObject {
+        
+        let defaults:UserDefaults = UserDefaults.standard
+        if let userDict = defaults.object(forKey: key) {
+            return userDict as AnyObject
+        }
+        else {
+            return [String: String]() as AnyObject
+        }
+        
+        
+    }
     
     class func removeObjectOfKey(key:String) {
         
@@ -62,19 +62,38 @@ extension UserDefaults {
     }
 
     
+    class func retriveLoggedInUserId()-> String {
+        
+        let dict =  self.retriveDataForKey(key: LOGIN_SAVE_KEY)
+       
+        if let userID = dict["userId"] as? String {
+             return userID
+        }
+        else {
+            return ""
+        }
+    }
     
     
-    
-   
+    class func retriveLoggedInDetails()-> Dictionary<String,AnyObject> {
+        
+        
+        if let info = self.retriveDataForKey(key: LOGIN_SAVE_KEY) as? Dictionary<String,AnyObject>{
+            return info
+        }
+        else {
+            return Dictionary<String,AnyObject>()
+        }
+    }
     
     
     class func IsUserLoggedIn()-> Bool {
         
-//        let  loggedUser =  self.retriveLoggedInDetails() as String
-//        
-//        if  loggedUser.characters.count > 0 {
-//             return true
-//        }
+        let  loggedUser =  self.retriveLoggedInUserId() as String
+        
+        if  loggedUser.characters.count > 0 {
+             return true
+        }
         
         return false
        

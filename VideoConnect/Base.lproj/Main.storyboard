@@ -684,6 +684,10 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="KZQ-ve-nhb" id="Cpn-Hh-Oux"/>
+                                            <outlet property="delegate" destination="KZQ-ve-nhb" id="nAm-dw-91g"/>
+                                        </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsY-aE-D5U">
                                         <rect key="frame" x="325" y="617" width="30" height="30"/>
@@ -793,6 +797,9 @@
                                             <constraint firstAttribute="width" constant="30" id="Cew-2i-3rZ"/>
                                             <constraint firstAttribute="height" constant="30" id="lt8-zD-NcM"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="popupActionWithSender:" destination="KZQ-ve-nhb" eventType="touchUpInside" id="IjC-kR-Dsx"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.27058823529999998" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -837,7 +844,7 @@
                     </view>
                     <connections>
                         <outlet property="btnChat" destination="h5Y-Mv-p3u" id="zEu-6C-uUc"/>
-                        <outlet property="btnContainer" destination="jsY-aE-D5U" id="RX8-Jt-wpd"/>
+                        <outlet property="btnContainer" destination="Ndy-ch-ORy" id="3DP-87-9HV"/>
                         <outlet property="btnJobs" destination="fm9-3s-7qv" id="KiI-OD-ggv"/>
                         <outlet property="btnMenu" destination="yjx-mX-4ye" id="zIk-Tr-dFv"/>
                         <outlet property="btnProfile" destination="sfd-os-And" id="Qo8-ae-o0g"/>
@@ -875,7 +882,7 @@
         <image name="sample2.jpeg" width="259" height="194"/>
         <image name="sample3.jpg" width="259" height="194"/>
         <image name="user" width="98" height="98"/>
-        <image name="vclogo.png" width="16" height="16"/>
+        <image name="vclogo.png" width="347" height="36"/>
         <image name="white_fill_eye" width="16" height="16"/>
         <image name="white_fill_mail" width="16" height="16"/>
         <image name="white_fill_phone" width="16" height="16"/>

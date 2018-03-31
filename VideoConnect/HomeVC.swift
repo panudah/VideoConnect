@@ -11,7 +11,7 @@ import Alamofire
 import ImageSlideshow
 import SwiftyJSON
 
-class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebServiceDelegate {
   
   
     
@@ -48,8 +48,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let model = generateRandomData()
     var storedOffsets = [Int: CGFloat]()
     var retrivedData : NSMutableDictionary!
-    var headers: NSArray = []
-    var headersDict : NSDictionary = NSDictionary.init(dictionary:["Newly added":NEW_JSON_KEY, "Most viewed":MOST_JSON_KEY,"Featured":FEATURED_JSON_KEY,"Recent products":PRODUCT_LIST_JSON_KEY,"Recent shops":SHOP_LIST_JSON_KEY])
+ //   var headers: NSArray = []
+     var headers:NSMutableArray = NSMutableArray()
+   var headersDict : NSDictionary = NSDictionary.init(dictionary:["Newly added":NEW_JSON_KEY, "Most viewed":MOST_JSON_KEY,"Featured":FEATURED_JSON_KEY,"Recent products":PRODUCT_LIST_JSON_KEY,"Recent shops":SHOP_LIST_JSON_KEY])
     
     //var sideVC: RightMenuVC!
     
@@ -58,7 +59,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loaddata()
+  //  loaddata()
 //        let revealController:SWRevealViewController = self.revealViewController()
 //        revealController.panGestureRecognizer()
 //        revealController.tapGestureRecognizer()
@@ -67,7 +68,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.tblHome.separatorStyle = UITableViewCellSeparatorStyle.none
         
-        self.hostFullURL = NSString(format: HOST_URL as NSString,PATH)
+        self.hostFullURL = NSString(format: HOST_URL as String as NSString,PATH)
         
     //    ProgressManager.showWithStatus("Loading...", onView: self.view)
         
@@ -75,7 +76,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         
       //  UserDefaults.retriveLoggedInUserId()
-       // self.makeWSCall(self.hostFullURL as! String, postDict:dict, tag:0)
+        self.makeWSCall(url: self.hostFullURL as! String , postDict:dict, tag:0)
         
 //        sideVC = self.storyboard?.instantiateViewControllerWithIdentifier("RightMenuVC") as! RightMenuVC
 //        self.addChildViewController(sideVC)
@@ -84,7 +85,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //
 //        sideVC.view.translatesAutoresizingMaskIntoConstraints = false
         
-//        self.viewSideHolder.addConstraint(NSLayoutConstraint(item: sideVC.view, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.viewSideHolder, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0.0))
+//        self.viewSideHolder.addConstraint(NSLayoutConstraint(item: .sideVC.view, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.viewSideHolder, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0.0))
 //        self.viewSideHolder.addConstraint(NSLayoutConstraint(item: sideVC.view, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.viewSideHolder, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 0.0))
 //        self.viewSideHolder.addConstraint(NSLayoutConstraint(item: sideVC.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.viewSideHolder, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0.0))
 //        self.viewSideHolder.addConstraint(NSLayoutConstraint(item: sideVC.view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.viewSideHolder, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0.0))
@@ -94,6 +95,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //
 //        sideVC.btnMoreChannels.addTarget(self, action: #selector(channelAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 //
+        
+        
+        
+        
         self.constTop.constant = -(UIScreen.main.bounds.size.height)
         self.constBottom.constant = (UIScreen.main.bounds.size.height)
         self.view.layoutIfNeeded()
@@ -105,11 +110,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
      //   self.tblHome.showRefreshView = false
       //  self.tblHome.showLoadMoreView = true
         
-      //  self.showPopup(display: false, animated: false)
-//        self.tapGesturee = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
-//        self.tapGesturee.numberOfTapsRequired = 1
-//        self.tapGesturee.numberOfTouchesRequired = 1
-//        self.viewBlur.addGestureRecognizer(self.tapGesturee)
+        self.showPopup(display: false, animated: false)
+        self.tapGesturee = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
+        self.tapGesturee.numberOfTapsRequired = 1
+        self.tapGesturee.numberOfTouchesRequired = 1
+        self.viewBlur.addGestureRecognizer(self.tapGesturee)
         
     //    let nc = NotificationCenter.defaultCenter()
     //    nc.addObserver(self,
@@ -120,16 +125,93 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // NSTimer(timeInterval: 80000, target: self, selector: Selector(setcallForProductList()), userInfo: nil, repeats: false)
         // self.setcallForProductList()
         
-//        self.btnContainer.alpha = (UserDefaults.retriveLoggedInUserId().characters.count > 0) ?1.0:0
+   //    self.btnContainer.alpha = (UserDefaults.retriveLoggedInUserId().characters.count > 0) ?1.0:0
 //        self.viewPopup.alpha = (UserDefaults.retriveLoggedInUserId().characters.count > 0) ?1.0:0
 //        self.viewResizer.alpha = (NSUserDefaults.retriveLoggedInUserId().characters.count > 0) ?1.0:0
 //
-//        self.showPopup(false, animated: false)
+        
+        self.btnContainer.alpha = 1.0
+          self.viewPopup.alpha = 1.0
+       self.viewResizer.alpha = 1.0
+        self.showPopup(display: false, animated: false)
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.showPopup(display: false, animated: false)
+    }
+//
+//    @IBAction func menuAction(sender: AnyObject) {
+//        UIView.animate(withDuration: 0.3) {
+//            self.btnRight?.transform = CGAffineTransform(rotationAngle: (self.constTop.constant < 0) ?(270.degreesToRadians):0.degreesToRadians)
+//
+//            self.constTop.constant = (self.constTop.constant < 0) ?0:-(UIScreen.main.bounds.size.height)
+//            self.constBottom.constant = (self.constBottom.constant > 0) ?0:(UIScreen.main.bounds.size.height)
+//
+//            self.view.layoutIfNeeded()
+//
+//            if self.constTop.constant == 0 {
+//                self.view.bringSubview(toFront: self.viewSideHolder)
+//             //   self.sideVC.setUserWSCall()
+//            }
+//        }
+//    }
     
+     @IBAction func popupAction(sender: AnyObject) {
+      //  (self.viewBlur.alpha == 0)
+        self.showPopup(display: (self.viewBlur.alpha == 0), animated: true)
+    }
+    func showPopup(display:Bool, animated: Bool) {
+        UIView.animate(withDuration: (animated) ?0.3:0, animations: {
+            self.btnVideo.layer.cornerRadius = (display) ?22.5:2
+            self.btnVideo.layer.masksToBounds = true
+            self.btnVideo.setTitle((display) ?"Video":"", for: .normal)
+            self.btnVideo.setImage((display) ?UIImage(named:"ic_videocam_white"):nil, for: .normal)
+            
+            self.btnChat.layer.cornerRadius = (display) ?22.5:2
+            self.btnChat.layer.masksToBounds = true
+            self.btnChat.setTitle((display) ?"Chat":"", for: .normal)
+            self.btnChat.setImage((display) ?UIImage(named:"ic_chat_white"):nil, for: .normal)
+            
+            self.btnProfile.layer.cornerRadius = (display) ?22.5:2
+            self.btnProfile.layer.masksToBounds = true
+            self.btnProfile.setTitle((display) ?"Profile":"", for: .normal)
+            self.btnProfile.setImage((display) ?UIImage(named:"ic_person_outline_white"):nil, for: .normal)
+            
+            self.btnShop.layer.cornerRadius = (display) ?22.5:2
+            self.btnShop.layer.masksToBounds = true
+            self.btnShop.setTitle((display) ?"Shop":"", for: .normal)
+            self.btnShop.setImage((display) ?UIImage(named:"ic_local_grocery_store_white"):nil, for:.normal)
+            
+            self.btnJobs.layer.cornerRadius = (display) ?22.5:2
+            self.btnJobs.layer.masksToBounds = true
+            self.btnJobs.setTitle((display) ?"Jobs":"", for: .normal)
+            self.btnJobs.setImage((display) ?UIImage(named:"ic_file_upload_white"):nil, for:.normal)
+            
+            self.viewBlur.alpha = (display) ?1.0:0
+            self.constSize.constant = (display) ?300:30
+            self.constCenterX.constant = (display == false) ?(self.btnContainer.frame.origin.x - (self.view.frame.size.width/2.0)) + 15.0:0
+            self.constCenterY.constant = (display == false) ?(self.btnContainer.frame.origin.y - (self.view.frame.size.height/2.0)) + 15.0:0
+            self.view.layoutIfNeeded()
+        }) { (finished:Bool) in
+        }
+    }
+    
+    @objc func dismissPopup() {
+        self.showPopup(display: false, animated: true)
+
+    }
+    
+    func  makeWSCall(url:String , postDict:NSDictionary , tag:Int) {
+        
+        let httpRequest :HTTPRequest = HTTPRequest()
+        httpRequest.delegate = self
+        httpRequest.fetchContents(hostURL: url as NSString, dictionary: postDict, tag: tag,requestType:"POST", timeoutInterval:30.0)
+        
+    }
     func  loaddata()
     {
         
@@ -172,9 +254,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
               print("fgfgfg \(dic)")
                     
                     
-                    self.headers = dic["featured"] as! NSArray
+                   // self.headers = dic["featured"] as! NSArray
                     
                     print("the ball \(self.headers)")
+                  //  self.tblHome.reloadData()
 //                    let succ =  json["success"] as! Int
 //                    // print(succ)
 //                    if succ == 1
@@ -270,7 +353,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    internal func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? TableViewCell else { return }
         storedOffsets[indexPath.row] = tableViewCell.collectionViewOffset
         
@@ -280,10 +363,198 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
          }*/
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.size.height * ((UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) ?(310.0/1024.0):(240.0/568.0))
     }
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if  headers.count > 0 {
+            return 5
+        } else {
+            return 0
+        }
+    }
     
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let header:String = headers.object(at: collectionView.tag - 1000) as! String
+        let type:String = headersDict.value(forKey: header) as! String
+        let arrays : NSArray = retrivedData.value(forKey: type) as! NSArray
+        let index : NSInteger = (indexPath.section * 5) + indexPath.row
+            let cell: VideoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell1", for: indexPath as IndexPath) as! VideoCollectionViewCell 
+        if (header == "Newly added") || (header == "Most viewed") || (header == "Featured")    {
+            
+           let cell: VideoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell1", for: indexPath as IndexPath) as! VideoCollectionViewCell
+            
+            cell.layoutIfNeeded()
+            
+            let video:Video = arrays.object(at: index) as! Video
+            
+            cell.lblDetails.text = video.title
+           // cell.lblUserName.text = video.user.userName
+            
+        //    cell.imageTop.setAsyncImage(DEFAULT_IMG, url:video.user.profileImg)
+      //  cell.bgView.setAsyncImage(DEFAULT_IMG, url:video.thumbImg)
+            
+            cell.imageTop.setRounded(borderWidth: 1.0, borderColor:UIColor.white )
+            
+            cell.layer.cornerRadius = (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) ?15.0:6.0
+            cell.layer.masksToBounds = true
+            cell.clipsToBounds = true
+            
+//            cell.btnWatchedCount.setTitle(video.views, forState: UIControlState.Normal)
+//            cell.btnLikedCount.setTitle(video.like, forState: UIControlState.Normal)
+//            cell.btnDislikedCount.setTitle(video.dislike, forState: UIControlState.Normal)
+//            cell.btnFavouritedCount.setTitle(video.fav, forState: UIControlState.Normal)
+//            cell.btnCommentedCount.setTitle(video.comment, forState: UIControlState.Normal)
+            
+            cell.layoutIfNeeded()
+            cell.backgroundColor = UIColor.clear
+        }
+            return cell
+            
+      //  }
+            
+    
+   }
    
     
+//    @IBAction func callAction(sender: UIButton) {
+//        self.makeCallToNumber((sender.object as! Shop).mobile as String)
+//    }
+//
+//    @IBAction func emailAction(sender: UIButton) {
+//        self.openMailClient((sender.object as! Shop).email as String)
+//    }
+    
+//    @IBAction func webSiteAction(sender: UIButton) {
+//        self.openWebURL((sender.object as! Shop).shopURL as String)
+//    }
+//    
+  //  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+       // print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+        
+      /*  let stbrd:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let indx: Int =  collectionView.tag - 1000
+        
+        let header:String = headers.objectAtIndex(indx) as! String
+        
+        let type:String = headersDict.valueForKey(header) as! String
+        
+        let arrays : NSArray = retrivedData.valueForKey(type) as! NSArray
+        let index : NSInteger = (indexPath.section * 5) + indexPath.row
+        
+        if (header == "Newly added") || (header == "Most viewed") || (header == "Featured"){
+            let video:Video = arrays.objectAtIndex(index) as! Video
+            
+            if video.type == "y" {
+                let detailsVC:NewVideoDetailsVC =  (stbrd.instantiateViewControllerWithIdentifier("NewVideoDetailsVC") as? NewVideoDetailsVC)!
+                detailsVC.youtubeId = video.videoId
+                detailsVC.videoObj = video
+                self.title = ""
+                self.navigationController?.pushViewController(detailsVC, animated: true)
+            }
+            
+        }
+        else if (header == "Recent products") {
+        }
+        else { // Shops
+            
+            
+            let shop:Shop = arrays.objectAtIndex(index) as! Shop
+            
+            let detailsVC:NewShopDetailsVC =  (stbrd.instantiateViewControllerWithIdentifier("NewShopDetailsVC") as? NewShopDetailsVC)!
+            
+            detailsVC.shopObj = shop
+            self.title = ""
+            self.navigationController?.pushViewController(detailsVC, animated: true)
+            
+        }*/
+        
+        
+        
+        
+        
+    //}
+   
+    // MARK: - WebServiceDelegate
+    
+    func didFinishWithError(error error: NSError?, response dict: NSDictionary, object httpRequest: HTTPRequest) {
+        
+        
+     //   dispatch_get_main_queue().async(){
+         //   ProgressManager.dismiss()
+            if (error == nil) {
+                
+                if (httpRequest.tag == 0) { // Newly added,Most viewed,Featured viedoes
+                    
+                    
+                    let homeParser:HomeVCParser = JSONFactory().getParser(parserType: 1) as! HomeVCParser
+                    self.retrivedData = homeParser.getParsedData(dataDict: dict)
+                    if  self.headers.count > 0 {
+                       // self.headers.removeAllObjects()
+                    }
+                    
+                    if self.retrivedData[NEW_JSON_KEY] != nil {
+                        self.headers.add("Newly added")
+                    }
+                    if self.retrivedData[MOST_JSON_KEY] != nil {
+                        self.headers.add("Most viewed")
+                    }
+                    if self.retrivedData[FEATURED_JSON_KEY] != nil {
+                        self.headers.add("Featured")
+                    }
+                    
+                    if self.headers.count > 0 {
+                        self.tblHome.reloadData()
+                    }
+                    /*_ = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector:  #selector(HomeVC.setcallForProductList), userInfo: nil, repeats: false)*/
+                }
+                else if httpRequest.tag == 1 { // Products
+                    
+//                    let productJSONParser:ProductJSONParser = JSONFactory().getParser(3) as! ProductJSONParser
+//                    let retrivedArr:NSMutableArray = productJSONParser.getParsedData(dict, jsonKey: PRODUCT_LIST_JSON_KEY)
+//
+//                    self.finishLoadMore()
+//
+//
+//                    if retrivedArr.count > 0 {
+//                        self.retrivedData.setValue(retrivedArr, forKey: PRODUCT_LIST_JSON_KEY)
+//                        self.headers.addObject("Recent products")
+//                        self.tblHome.reloadData()
+//                    }
+//
+                    /*_ = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector:  #selector(HomeVC.setcallForShopList), userInfo: nil, repeats: false)*/
+                    
+                }
+                    
+                else if httpRequest.tag == 2 { // Shops
+                    
+//                    let shopJSONParser:ShopJSONParser = JSONFactory().getParser(4) as! ShopJSONParser
+//                    let retrivedArr:NSMutableArray = shopJSONParser.getParsedData(dict, jsonKey: SHOP_LIST_JSON_KEY)
+//
+//                    self.finishLoadMore()
+//                    self.tblHome.showLoadMoreView = false
+//
+//                    if retrivedArr.count > 0 {
+//                        self.retrivedData.setValue(retrivedArr, forKey: SHOP_LIST_JSON_KEY)
+//                        self.headers.addObject("Recent shops")
+//                        self.tblHome.reloadData()
+//                    }
+                    
+                }
+                
+            }
+                
+            else {
+                
+              //  self.finishLoadMore()
+                
+            }
+            
+      //  }
+        
+        
+    }
+    
 }
+
