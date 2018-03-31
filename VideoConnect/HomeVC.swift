@@ -11,7 +11,7 @@ import Alamofire
 import ImageSlideshow
 import SwiftyJSON
 
-class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebServiceDelegate {
+class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebServiceDelegate,UICollectionViewDataSource {
   
   
     
@@ -209,7 +209,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         
         let httpRequest :HTTPRequest = HTTPRequest()
         httpRequest.delegate = self
+        
+        
+        
         httpRequest.fetchContents(hostURL: url as NSString, dictionary: postDict, tag: tag,requestType:"POST", timeoutInterval:30.0)
+        
+       
         
     }
     func  loaddata()
@@ -323,6 +328,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         
     //    cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
         cell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+        cell.collectionView.dataSource = self
+        
         cell.collectionView.tag = indexPath.row + 1000
         
         cell.btnMore.tag = indexPath.row + 5000
@@ -366,7 +373,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.size.height * ((UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) ?(310.0/1024.0):(240.0/568.0))
     }
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if  headers.count > 0 {
             return 5
         } else {
@@ -374,7 +381,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let header:String = headers.object(at: collectionView.tag - 1000) as! String
         let type:String = headersDict.value(forKey: header) as! String
         let arrays : NSArray = retrivedData.value(forKey: type) as! NSArray
@@ -390,8 +397,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
             
             cell.lblDetails.text = video.title
            // cell.lblUserName.text = video.user.userName
-            
-        //    cell.imageTop.setAsyncImage(DEFAULT_IMG, url:video.user.profileImg)
+            cell.imageTop.image = UIImage (named: "vclogo.png")
+       //    cell.imageTop.setAsyncImage(DEFAULT_IMG, url:video.user.profileImg)
       //  cell.bgView.setAsyncImage(DEFAULT_IMG, url:video.thumbImg)
             
             cell.imageTop.setRounded(borderWidth: 1.0, borderColor:UIColor.white )
