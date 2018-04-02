@@ -13,7 +13,7 @@ pod 'Alamofire'
 	pod 'SVProgressHUD'
 pod "ImageSlideshow/Kingfisher"
  pod 'PageControl'
-
+pod 'SDWebImage'
   target 'VideoConnectTests' do
     inherit! :search_paths
     # Pods for testing

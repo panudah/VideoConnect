@@ -8,13 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+
+class ViewController: SWRevealViewController {
+    
+    var httpRequest:HTTPRequest!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*let dict:NSDictionary = NSDictionary()
+         
+         HTTPRequest().fetchContents(HO_URL, dictionary:dict, tag: 0,requestType:"GET", timeoutInterval:60.0)*/
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-   
+    
+    func didFinishWithError(error error: NSError?, response dict: NSDictionary, object httpRequest: HTTPRequest) {
+        if(error != nil){
+            
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
 }
-

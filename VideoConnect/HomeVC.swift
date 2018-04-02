@@ -11,6 +11,7 @@ import Alamofire
 import ImageSlideshow
 import SwiftyJSON
 
+import Kingfisher
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebServiceDelegate,UICollectionViewDataSource {
   
   
@@ -60,11 +61,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
     override func viewDidLoad() {
         super.viewDidLoad()
   //  loaddata()
-//        let revealController:SWRevealViewController = self.revealViewController()
-//        revealController.panGestureRecognizer()
-//        revealController.tapGestureRecognizer()
-//
-//        self.btnMenu.addTarget(revealController, action: #selector(SWRevealViewController.revealToggle(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        let revealController:SWRevealViewController = self.revealViewController()
+        revealController.panGestureRecognizer()
+        revealController.tapGestureRecognizer()
+
+        self.btnMenu.addTarget(revealController, action: #selector(SWRevealViewController.revealToggle(_:)), for: UIControlEvents.touchUpInside)
         
         self.tblHome.separatorStyle = UITableViewCellSeparatorStyle.none
         
@@ -116,14 +117,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         self.tapGesturee.numberOfTouchesRequired = 1
         self.viewBlur.addGestureRecognizer(self.tapGesturee)
         
-    //    let nc = NotificationCenter.defaultCenter()
-    //    nc.addObserver(self,
-                 //      selector: #selector(HomeVC.refreshTimeLine),
-                    //   name: "LoginLogoutRefresh",
-                     //  object: nil)
+        let nc = NotificationCenter.default;       nc.addObserver(self,
+                       selector: #selector(HomeVC.refreshTimeLine),
+                       name: NSNotification.Name(rawValue: "LoginLogoutRefresh"),
+                       object: nil)
         
-        // NSTimer(timeInterval: 80000, target: self, selector: Selector(setcallForProductList()), userInfo: nil, repeats: false)
-        // self.setcallForProductList()
+      //  Timer(timeInterval: 80000, target: self, selector: Selector(setcallForProductList()), userInfo: nil, repeats: false)
+         self.setcallForProductList()
         
    //    self.btnContainer.alpha = (UserDefaults.retriveLoggedInUserId().characters.count > 0) ?1.0:0
 //        self.viewPopup.alpha = (UserDefaults.retriveLoggedInUserId().characters.count > 0) ?1.0:0
@@ -215,6 +215,70 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         httpRequest.fetchContents(hostURL: url as NSString, dictionary: postDict, tag: tag,requestType:"POST", timeoutInterval:30.0)
         
        
+        
+    }
+    
+    
+    @objc func refreshTimeLine() {
+        
+        
+        if  self.headers.count > 0 {
+            self.headers.removeAllObjects()
+        }
+        
+        self.retrivedData = nil
+        
+        //ProgressManager.showWithStatus("Loading...", onView: self.view)
+        
+        let dict : NSDictionary = ["requestFrom":"mobile","requestType":"new,most,featured","start":"0","limit":"5","userId":"1"]
+        self.makeWSCall(url: self.hostFullURL as! String, postDict:dict, tag:0)
+        
+        
+    }
+    
+    @objc func finishLoadMore(){
+     //   self.tblHome.finishLoadMore()
+    }
+    
+    func dragTableDidTriggerLoadMore(tableView: UITableView!) {
+        /*dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+         self.finishLoadMore()
+         }*/
+        
+        if self.retrivedData[PRODUCT_LIST_JSON_KEY] == nil {
+            self.setcallForProductList()
+        }
+        else if self.retrivedData[SHOP_LIST_JSON_KEY] == nil {
+            self.setcallForShopList()
+        }
+        
+        
+    }
+    
+    func dragTableLoadMoreCanceled(tableView: UITableView!) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(finishLoadMore), object: nil)
+    }
+    
+    // MARK: - Other class methods
+    
+    func setcallForShopList() {
+  //      let time : dispatch_time_t = DispatchTime.now(dispatch_time_t(DISPATCH_TIME_NOW), Int64(NSEC_PER_MSEC/(USEC_PER_SEC*5000)))
+  //      dispatch_after(time, dispatch_get_main_queue(), {
+            let dict : NSDictionary = ["requestFrom":"mobile","requestType":"newShop","start":"0","limit":"5","userId":UserDefaults.retriveLoggedInUserId()]
+            self.makeWSCall(url: self.hostFullURL as! String + SHOP_LIST_PATH, postDict:dict, tag:2)
+     //   })
+        
+    }
+    
+    
+    func setcallForProductList() {
+        
+        
+//        let time : dispatch_time_t = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(NSEC_PER_MSEC/(USEC_PER_SEC*5000)))
+//        dispatch_after(time, dispatch_get_main_queue(), {
+            let dict : NSDictionary = ["requestFrom":"mobile","requestType":"newProduct","start":"0","limit":"5","userId":"1"]
+            self.makeWSCall(url: self.hostFullURL as! String + PRODUCT_LIST_PATH, postDict:dict, tag:1)
+  //      })
         
     }
     func  loaddata()
@@ -386,7 +450,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         let type:String = headersDict.value(forKey: header) as! String
         let arrays : NSArray = retrivedData.value(forKey: type) as! NSArray
         let index : NSInteger = (indexPath.section * 5) + indexPath.row
-            let cell: VideoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell1", for: indexPath as IndexPath) as! VideoCollectionViewCell 
+           // let cell: VideoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell1", for: indexPath as IndexPath) as! VideoCollectionViewCell
         if (header == "Newly added") || (header == "Most viewed") || (header == "Featured")    {
             
            let cell: VideoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell1", for: indexPath as IndexPath) as! VideoCollectionViewCell
@@ -396,10 +460,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
             let video:Video = arrays.object(at: index) as! Video
             
             cell.lblDetails.text = video.title
-           // cell.lblUserName.text = video.user.userName
-            cell.imageTop.image = UIImage (named: "vclogo.png")
-       //    cell.imageTop.setAsyncImage(DEFAULT_IMG, url:video.user.profileImg)
-      //  cell.bgView.setAsyncImage(DEFAULT_IMG, url:video.thumbImg)
+           cell.lblUserName.text = video.user.userName
+         //  cell.imageTop.image = UIImage (named: "vclogo.png")
+              cell.imageTop.setAsyncImage(defaultImg: DEFAULT_IMG, url:video.user.profileImg)
+          //  let url = URL(string: video.user.profileImg)
+            
+            cell.bgView.setAsyncImage(defaultImg: DEFAULT_IMG, url:video.thumbImg)
             
             cell.imageTop.setRounded(borderWidth: 1.0, borderColor:UIColor.white )
             
@@ -415,11 +481,59 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
             
             cell.layoutIfNeeded()
             cell.backgroundColor = UIColor.clear
+              return cell
         }
-            return cell
+          
             
       //  }
+        
+        else if (header == "Recent products") {
             
+            let cell: ProductCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell2", for: indexPath) as! ProductCollectionViewCell
+            
+            cell.layoutIfNeeded()
+            
+            let product:Product = arrays.object(at: index) as! Product
+            
+            cell.lblDetails.text = product.name as? String
+            
+            cell.bgView.setAsyncImage(defaultImg: DEFAULT_IMG, url:product.img as! String)
+            
+            cell.layer.cornerRadius = (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) ?15.0:6.0
+            cell.layer.masksToBounds = true
+            cell.clipsToBounds = true
+            
+            cell.backgroundColor = UIColor.clear
+            return cell
+            
+            
+        }
+            
+        else { // Shops
+            let cell: ShopCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell3", for: indexPath) as! ShopCollectionViewCell
+            cell.layoutIfNeeded()
+            
+            let shop:Shop = arrays.object(at: index) as! Shop
+            cell.lblDetails.text = shop.name as? String
+            
+            cell.bgView.setAsyncImage(defaultImg: DEFAULT_IMG, url:shop.img as! String)
+            
+            cell.layer.cornerRadius = (UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad) ?15.0:6.0
+            cell.layer.masksToBounds = true
+            cell.clipsToBounds = true
+            
+//            cell.btnCall.object = shop
+//            cell.btnCall.addTarget(self, action: #selector(Collection(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//            
+//            cell.btnEmail.object = shop
+//            cell.btnEmail.addTarget(self, action: #selector(emailAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+//            
+//            cell.btnWebsite.object = shop
+//            cell.btnWebsite.addTarget(self, action: #selector(webSiteAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            
+            cell.backgroundColor = UIColor.clear
+            return cell
+        }
     
    }
    
@@ -436,8 +550,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
 //        self.openWebURL((sender.object as! Shop).shopURL as String)
 //    }
 //    
-  //  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-       // print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("Collection view at row \(collectionView.tag) selected index path \(indexPath)")
         
       /*  let stbrd:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -452,7 +566,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
         
         if (header == "Newly added") || (header == "Most viewed") || (header == "Featured"){
             let video:Video = arrays.objectAtIndex(index) as! Video
-            
+         
             if video.type == "y" {
                 let detailsVC:NewVideoDetailsVC =  (stbrd.instantiateViewControllerWithIdentifier("NewVideoDetailsVC") as? NewVideoDetailsVC)!
                 detailsVC.youtubeId = video.videoId
@@ -460,28 +574,28 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,WebSe
                 self.title = ""
                 self.navigationController?.pushViewController(detailsVC, animated: true)
             }
-            
+         
         }
         else if (header == "Recent products") {
         }
-        else { // Shops
-            
-            
+        else {  Shops
+         
+         
             let shop:Shop = arrays.objectAtIndex(index) as! Shop
-            
+         
             let detailsVC:NewShopDetailsVC =  (stbrd.instantiateViewControllerWithIdentifier("NewShopDetailsVC") as? NewShopDetailsVC)!
-            
+         
             detailsVC.shopObj = shop
             self.title = ""
             self.navigationController?.pushViewController(detailsVC, animated: true)
-            
+         
         }*/
         
         
         
         
         
-    //}
+    }
    
     // MARK: - WebServiceDelegate
     

@@ -29,7 +29,7 @@ class Video: NSObject {
     
     var dating: String = ""
     
-  //  var user:User = User()
+var user:User = User()
     
     var comment: String = ""
     var flgged: String = ""
@@ -111,11 +111,11 @@ class Video: NSObject {
             self.thumbImg =  dict["videoThumbImg"] as! String
         }
         
-//        self.user = user()
-//
-//        if (dict.valueForKey("user") != nil) {
-//            user.setData(fromData:dict.objectForKey("user") as! NSDictionary)
-//        }
+     //   user = user
+
+        if (dict.value(forKey: "user") != nil) {
+            user.setData(fromData:dict.object(forKey: "user") as! NSDictionary)
+        }
         
         if (dict.value(forKey: "viewsCount") != nil) {
             self.views =  dict["viewsCount"] as! String

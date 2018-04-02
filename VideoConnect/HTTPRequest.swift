@@ -52,7 +52,9 @@ class HTTPRequest:NSObject {
         
         
         print("URL: \(hostURL), Request: \(dictionary)")
-             let parameters = ["requestFrom": "mobile", "requestType": "new,most,featured","start":"0","limit":"5","userId":"1"]
+          let parameters = ["requestFrom": "mobile", "requestType": "new,most,featured","start":"0","limit":"5","userId":"1"]
+       //  let parameters = ["requestFrom":"mobile","requestType":"newProduct","start":"0","limit":"5","userId":"1"]
+
       //  let session = URLSession.shared
         let config = URLSessionConfiguration.default
         let session1 = URLSession(configuration: config)

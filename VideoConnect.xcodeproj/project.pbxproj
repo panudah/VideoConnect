@@ -45,6 +45,20 @@
 		185B951C206D302900C3E905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185B951A206D302900C3E905 /* LaunchScreen.storyboard */; };
 		185B9527206D302900C3E905 /* VideoConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B9526206D302900C3E905 /* VideoConnectTests.swift */; };
 		185B9532206D302900C3E905 /* VideoConnectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B9531206D302900C3E905 /* VideoConnectUITests.swift */; };
+		187A97A72072140E00E38688 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97A62072140E00E38688 /* User.swift */; };
+		187A97A92072146F00E38688 /* UserJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97A82072146F00E38688 /* UserJSONParser.swift */; };
+		187A97AB2072214D00E38688 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97AA2072214D00E38688 /* Product.swift */; };
+		187A97AD2072344A00E38688 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97AC2072344A00E38688 /* Shop.swift */; };
+		187A97B220723C5200E38688 /* ChannelJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97AE20723C5100E38688 /* ChannelJSONParser.swift */; };
+		187A97B320723C5200E38688 /* ShopJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97AF20723C5100E38688 /* ShopJSONParser.swift */; };
+		187A97B420723C5200E38688 /* ProductJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97B020723C5200E38688 /* ProductJSONParser.swift */; };
+		187A97B520723C5200E38688 /* CommentJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97B120723C5200E38688 /* CommentJSONParser.swift */; };
+		187A97B720723C7300E38688 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97B620723C7300E38688 /* Channel.swift */; };
+		187A97BB2072452300E38688 /* kk.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A97BA2072452300E38688 /* kk.m */; };
+		187A97BD207245EC00E38688 /* SWRevealViewController in Resources */ = {isa = PBXBuildFile; fileRef = 187A97BC207245EC00E38688 /* SWRevealViewController */; };
+		187A97C0207245FD00E38688 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A97BF207245FD00E38688 /* SWRevealViewController.m */; };
+		187A97C22072463800E38688 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97C12072463800E38688 /* LeftMenuVC.swift */; };
+		187A97C42072484200E38688 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A97C32072484100E38688 /* MenuTableViewCell.swift */; };
 		613F02D1B1790B501881E800 /* Pods_VideoConnectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28B93758593970F728AF658 /* Pods_VideoConnectTests.framework */; };
 		9F4FB9F37498CFA983774538 /* Pods_VideoConnectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620DAE188AD26AF516C59E92 /* Pods_VideoConnectUITests.framework */; };
 /* End PBXBuildFile section */
@@ -110,6 +124,23 @@
 		185B952D206D302900C3E905 /* VideoConnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoConnectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185B9531206D302900C3E905 /* VideoConnectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoConnectUITests.swift; sourceTree = "<group>"; };
 		185B9533206D302900C3E905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		187A97A62072140E00E38688 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		187A97A82072146F00E38688 /* UserJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJSONParser.swift; sourceTree = "<group>"; };
+		187A97AA2072214D00E38688 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		187A97AC2072344A00E38688 /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		187A97AE20723C5100E38688 /* ChannelJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelJSONParser.swift; sourceTree = "<group>"; };
+		187A97AF20723C5100E38688 /* ShopJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopJSONParser.swift; sourceTree = "<group>"; };
+		187A97B020723C5200E38688 /* ProductJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductJSONParser.swift; sourceTree = "<group>"; };
+		187A97B120723C5200E38688 /* CommentJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentJSONParser.swift; sourceTree = "<group>"; };
+		187A97B620723C7300E38688 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		187A97B82072452300E38688 /* VideoConnect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoConnect-Bridging-Header.h"; sourceTree = "<group>"; };
+		187A97B92072452300E38688 /* kk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kk.h; sourceTree = "<group>"; };
+		187A97BA2072452300E38688 /* kk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kk.m; sourceTree = "<group>"; };
+		187A97BC207245EC00E38688 /* SWRevealViewController */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SWRevealViewController; sourceTree = "<group>"; };
+		187A97BE207245FC00E38688 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		187A97BF207245FD00E38688 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		187A97C12072463800E38688 /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
+		187A97C32072484100E38688 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		4E92F1421968D5062B35902F /* Pods_VideoConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		620DAE188AD26AF516C59E92 /* Pods_VideoConnectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoConnectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C18EB951D03AAF3115A75AC /* Pods-VideoConnectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoConnectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoConnectUITests/Pods-VideoConnectUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,7 +224,18 @@
 		185B950D206D302900C3E905 /* VideoConnect */ = {
 			isa = PBXGroup;
 			children = (
+				187A97A62072140E00E38688 /* User.swift */,
+				187A97B92072452300E38688 /* kk.h */,
+				187A97C32072484100E38688 /* MenuTableViewCell.swift */,
+				187A97BA2072452300E38688 /* kk.m */,
+				187A97A82072146F00E38688 /* UserJSONParser.swift */,
+				187A97B020723C5200E38688 /* ProductJSONParser.swift */,
+				187A97AF20723C5100E38688 /* ShopJSONParser.swift */,
+				187A97AE20723C5100E38688 /* ChannelJSONParser.swift */,
+				187A97B120723C5200E38688 /* CommentJSONParser.swift */,
+				187A97B620723C7300E38688 /* Channel.swift */,
 				1855E55B206FA4710048930D /* VCJSONParser.swift */,
+				187A97AA2072214D00E38688 /* Product.swift */,
 				1855E55D206FA4770048930D /* JSONFactory.swift */,
 				1855E555206F94230048930D /* APIManager.swift */,
 				1855E553206F94230048930D /* DMManager.swift */,
@@ -221,13 +263,19 @@
 				184FF730206D3EB5009A9FF2 /* sample3.jpg */,
 				184FF737206D4003009A9FF2 /* UTILS */,
 				184FF72D206D3E62009A9FF2 /* HomeVC.swift */,
+				187A97C12072463800E38688 /* LeftMenuVC.swift */,
 				185B950E206D302900C3E905 /* AppDelegate.swift */,
+				187A97AC2072344A00E38688 /* Shop.swift */,
+				187A97BE207245FC00E38688 /* SWRevealViewController.h */,
+				187A97BF207245FD00E38688 /* SWRevealViewController.m */,
+				187A97BC207245EC00E38688 /* SWRevealViewController */,
 				185B9510206D302900C3E905 /* ViewController.swift */,
 				185B9512206D302900C3E905 /* Main.storyboard */,
 				185B9518206D302900C3E905 /* Assets.xcassets */,
 				185B951A206D302900C3E905 /* LaunchScreen.storyboard */,
 				185B951D206D302900C3E905 /* Info.plist */,
 				185B9515206D302900C3E905 /* VideoConnect.xcdatamodeld */,
+				187A97B82072452300E38688 /* VideoConnect-Bridging-Header.h */,
 			);
 			path = VideoConnect;
 			sourceTree = "<group>";
@@ -340,6 +388,7 @@
 				TargetAttributes = {
 					185B950A206D302900C3E905 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					185B9521206D302900C3E905 = {
@@ -383,6 +432,7 @@
 				184FF733206D3EB7009A9FF2 /* sample2.jpeg in Resources */,
 				1855E537206F8BDA0048930D /* mail.png in Resources */,
 				1855E535206F8BDA0048930D /* browser.png in Resources */,
+				187A97BD207245EC00E38688 /* SWRevealViewController in Resources */,
 				184FF734206D3EB7009A9FF2 /* sample3.jpg in Resources */,
 				185B951C206D302900C3E905 /* LaunchScreen.storyboard in Resources */,
 				1855E538206F8BDA0048930D /* phone.png in Resources */,
@@ -538,6 +588,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PageControl/PageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -548,6 +599,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -583,23 +635,36 @@
 				1855E55E206FA4770048930D /* JSONFactory.swift in Sources */,
 				1855E55C206FA4710048930D /* VCJSONParser.swift in Sources */,
 				1855E556206F94230048930D /* DMManager.swift in Sources */,
+				187A97BB2072452300E38688 /* kk.m in Sources */,
 				185B9511206D302900C3E905 /* ViewController.swift in Sources */,
 				1855E53E206F8D8E0048930D /* ShopCollectionViewCell.swift in Sources */,
+				187A97C0207245FD00E38688 /* SWRevealViewController.m in Sources */,
+				187A97C42072484200E38688 /* MenuTableViewCell.swift in Sources */,
+				187A97AB2072214D00E38688 /* Product.swift in Sources */,
+				187A97B420723C5200E38688 /* ProductJSONParser.swift in Sources */,
+				187A97B320723C5200E38688 /* ShopJSONParser.swift in Sources */,
 				1855E551206F92530048930D /* ImageView.swift in Sources */,
 				1855E54F206F92530048930D /* Utilities.swift in Sources */,
+				187A97B520723C5200E38688 /* CommentJSONParser.swift in Sources */,
 				1855E54C206F92530048930D /* CustomField.swift in Sources */,
 				1855E54E206F92530048930D /* CustomButton.swift in Sources */,
+				187A97B220723C5200E38688 /* ChannelJSONParser.swift in Sources */,
 				184FF72E206D3E62009A9FF2 /* HomeVC.swift in Sources */,
 				1855E54D206F92530048930D /* UIButton+Adition.swift in Sources */,
+				187A97A92072146F00E38688 /* UserJSONParser.swift in Sources */,
 				1855E550206F92530048930D /* UStrings.swift in Sources */,
 				1855E55A206FA4450048930D /* HomeVCParser.swift in Sources */,
 				1855E53C206F8D8E0048930D /* ProductCollectionViewCell.swift in Sources */,
+				187A97B720723C7300E38688 /* Channel.swift in Sources */,
 				185B9517206D302900C3E905 /* VideoConnect.xcdatamodeld in Sources */,
 				1855E540206F8DAD0048930D /* Video.swift in Sources */,
 				185B950F206D302900C3E905 /* AppDelegate.swift in Sources */,
+				187A97AD2072344A00E38688 /* Shop.swift in Sources */,
 				1855E557206F94230048930D /* HTTPRequest.swift in Sources */,
 				184FF73D206D5938009A9FF2 /* TableViewCell.swift in Sources */,
 				184FF73B206D4061009A9FF2 /* EnvConstant.swift in Sources */,
+				187A97C22072463800E38688 /* LeftMenuVC.swift in Sources */,
+				187A97A72072140E00E38688 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,11 +831,20 @@
 			baseConfigurationReference = 931A2EA18119D3030F4667B1 /* Pods-VideoConnect.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HXWVJ7243W;
 				INFOPLIST_FILE = VideoConnect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tanay.com.VideoConnect;
+				PRODUCT_BUNDLE_IDENTIFIER = app.roommate.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoConnect/VideoConnect-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -781,11 +855,19 @@
 			baseConfigurationReference = AEDA7ECDA368249550E998BE /* Pods-VideoConnect.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HXWVJ7243W;
 				INFOPLIST_FILE = VideoConnect/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tanay.com.VideoConnect;
+				PRODUCT_BUNDLE_IDENTIFIER = app.roommate.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoConnect/VideoConnect-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

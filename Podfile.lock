@@ -7,6 +7,9 @@ PODS:
   - Kingfisher (4.6.3)
   - PageControl (1.0.1)
   - ReachabilitySwift (4.1.0)
+  - SDWebImage (4.3.2):
+    - SDWebImage/Core (= 4.3.2)
+  - SDWebImage/Core (4.3.2)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.0.0)
 
@@ -16,6 +19,7 @@ DEPENDENCIES:
   - Kingfisher
   - PageControl
   - ReachabilitySwift
+  - SDWebImage
   - SVProgressHUD
   - SwiftyJSON
 
@@ -25,9 +29,10 @@ SPEC CHECKSUMS:
   Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
   PageControl: fbe258f0e874c30c30b867278fa04f9fd3381844
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  SDWebImage: 29bd3c0bc1f01e5eb59720847c64ad4c4ca1af5d
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: c4a36ff051d433f284dff5bb00523a8dafe7f779
+PODFILE CHECKSUM: 609cea3d045f9628b6c6949f0f4ad485ecca52b5
 
 COCOAPODS: 1.4.0
