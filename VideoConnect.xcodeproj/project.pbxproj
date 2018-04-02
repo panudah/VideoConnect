@@ -224,35 +224,14 @@
 		185B950D206D302900C3E905 /* VideoConnect */ = {
 			isa = PBXGroup;
 			children = (
-				187A97A62072140E00E38688 /* User.swift */,
+				187A97C820727E8200E38688 /* utility */,
+				187A97C720727E5E00E38688 /* custom cellview */,
+				187A97C620727E4100E38688 /* Model */,
+				187A97C52072767600E38688 /* json parser */,
 				187A97B92072452300E38688 /* kk.h */,
-				187A97C32072484100E38688 /* MenuTableViewCell.swift */,
 				187A97BA2072452300E38688 /* kk.m */,
-				187A97A82072146F00E38688 /* UserJSONParser.swift */,
-				187A97B020723C5200E38688 /* ProductJSONParser.swift */,
-				187A97AF20723C5100E38688 /* ShopJSONParser.swift */,
-				187A97AE20723C5100E38688 /* ChannelJSONParser.swift */,
-				187A97B120723C5200E38688 /* CommentJSONParser.swift */,
-				187A97B620723C7300E38688 /* Channel.swift */,
-				1855E55B206FA4710048930D /* VCJSONParser.swift */,
-				187A97AA2072214D00E38688 /* Product.swift */,
-				1855E55D206FA4770048930D /* JSONFactory.swift */,
-				1855E555206F94230048930D /* APIManager.swift */,
-				1855E553206F94230048930D /* DMManager.swift */,
-				1855E559206FA4450048930D /* HomeVCParser.swift */,
-				1855E554206F94230048930D /* HTTPRequest.swift */,
-				1855E54A206F92530048930D /* ImageView.swift */,
-				1855E548206F92520048930D /* Utilities.swift */,
-				1855E549206F92530048930D /* UStrings.swift */,
-				1855E546206F92520048930D /* UIButton+Adition.swift */,
-				1855E545206F92520048930D /* CustomField.swift */,
-				1855E547206F92520048930D /* CustomButton.swift */,
-				1855E53F206F8DAD0048930D /* Video.swift */,
 				1855E52F206F8BD90048930D /* browser.png */,
 				1855E530206F8BDA0048930D /* loginback.png */,
-				1855E539206F8D8D0048930D /* ProductCollectionViewCell.swift */,
-				1855E53B206F8D8E0048930D /* ShopCollectionViewCell.swift */,
-				1855E53A206F8D8D0048930D /* VideoCollectionViewCell.swift */,
 				1855E531206F8BDA0048930D /* mail.png */,
 				1855E532206F8BDA0048930D /* phone.png */,
 				1855E52E206F8BD90048930D /* telephone.png */,
@@ -265,7 +244,6 @@
 				184FF72D206D3E62009A9FF2 /* HomeVC.swift */,
 				187A97C12072463800E38688 /* LeftMenuVC.swift */,
 				185B950E206D302900C3E905 /* AppDelegate.swift */,
-				187A97AC2072344A00E38688 /* Shop.swift */,
 				187A97BE207245FC00E38688 /* SWRevealViewController.h */,
 				187A97BF207245FD00E38688 /* SWRevealViewController.m */,
 				187A97BC207245EC00E38688 /* SWRevealViewController */,
@@ -296,6 +274,60 @@
 				185B9533206D302900C3E905 /* Info.plist */,
 			);
 			path = VideoConnectUITests;
+			sourceTree = "<group>";
+		};
+		187A97C52072767600E38688 /* json parser */ = {
+			isa = PBXGroup;
+			children = (
+				1855E559206FA4450048930D /* HomeVCParser.swift */,
+				1855E55D206FA4770048930D /* JSONFactory.swift */,
+				1855E55B206FA4710048930D /* VCJSONParser.swift */,
+				187A97A82072146F00E38688 /* UserJSONParser.swift */,
+				187A97B020723C5200E38688 /* ProductJSONParser.swift */,
+				187A97AF20723C5100E38688 /* ShopJSONParser.swift */,
+				187A97AE20723C5100E38688 /* ChannelJSONParser.swift */,
+				187A97B120723C5200E38688 /* CommentJSONParser.swift */,
+			);
+			path = "json parser";
+			sourceTree = "<group>";
+		};
+		187A97C620727E4100E38688 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				187A97AC2072344A00E38688 /* Shop.swift */,
+				187A97A62072140E00E38688 /* User.swift */,
+				187A97B620723C7300E38688 /* Channel.swift */,
+				187A97AA2072214D00E38688 /* Product.swift */,
+				1855E53F206F8DAD0048930D /* Video.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		187A97C720727E5E00E38688 /* custom cellview */ = {
+			isa = PBXGroup;
+			children = (
+				187A97C32072484100E38688 /* MenuTableViewCell.swift */,
+				1855E539206F8D8D0048930D /* ProductCollectionViewCell.swift */,
+				1855E53B206F8D8E0048930D /* ShopCollectionViewCell.swift */,
+				1855E53A206F8D8D0048930D /* VideoCollectionViewCell.swift */,
+			);
+			path = "custom cellview";
+			sourceTree = "<group>";
+		};
+		187A97C820727E8200E38688 /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				1855E547206F92520048930D /* CustomButton.swift */,
+				1855E545206F92520048930D /* CustomField.swift */,
+				1855E546206F92520048930D /* UIButton+Adition.swift */,
+				1855E549206F92530048930D /* UStrings.swift */,
+				1855E548206F92520048930D /* Utilities.swift */,
+				1855E554206F94230048930D /* HTTPRequest.swift */,
+				1855E555206F94230048930D /* APIManager.swift */,
+				1855E553206F94230048930D /* DMManager.swift */,
+				1855E54A206F92530048930D /* ImageView.swift */,
+			);
+			path = utility;
 			sourceTree = "<group>";
 		};
 		FAA9B5C1FEAB8EAAAA7A2198 /* Pods */ = {
