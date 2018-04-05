@@ -8,7 +8,27 @@
 
 import UIKit
 
-class LeftMenuVC: UIViewController,WebServiceDelegate {
+class LeftMenuVC: UIViewController,WebServiceDelegate,UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemsBeforeLogin.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       // let cell: MenuTableViewCell? = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuTableViewCell()), for: indexPath as IndexPath) as? MenuTableViewCell
+        
+        let cell = self.zoneTableView.dequeueReusableCell(withIdentifier: "ball") as! MenuTableViewCell
+        cell.layoutIfNeeded()
+        cell.backgroundColor = UIColor.clear
+             //   var dataSource : Array =  (tableView == self.menuTableView) ?(NSUserDefaults.IsUserLoggedIn()) ?itemsAfterLogin:itemsBeforeLogin:itemsZones
+        cell.lblTitle.text = itemsBeforeLogin[indexPath.row]
+        //
+        cell.backgroundColor = UIColor.clear
+        return cell
+    }
+    
+    
+    
   
    
     
@@ -18,13 +38,13 @@ class LeftMenuVC: UIViewController,WebServiceDelegate {
     @IBOutlet weak var zoneView : UIView!
     
     var itemsBeforeLogin: [String] = ["Login", "Register", "Zones" ,"About us","Privacy policy","Terms of use", "Business plan", "Videoconnectt fees"]
-    var itemsAfterLogin: [String] = ["Zones" ,"Profile","Chat","Video","Shop","Jobs", "About us","Privacy policy","Terms of use", "Business plan", "Videoconnectt fees","Logout"]
-    var itemsZones: [String] = ["Connectt Friends", "Connectt Passions", "Connectt Hearts" ,"Connectt Trades","VC Timeline"]
+ //   var itemsAfterLogin: [String] = ["Zones" ,"Profile","Chat","Video","Shop","Jobs", "About us","Privacy policy","Terms of use", "Business plan", "Videoconnectt fees","Logout"]
+ //   var itemsZones: [String] = ["Connectt Friends", "Connectt Passions", "Connectt Hearts" ,"Connectt Trades","VC Timeline"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.menuTableView.dataSource = nil
-        self.menuTableView.delegate = nil
+     //   self.zoneTableView.dataSource = self
+     //   self.zoneTableView.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -34,15 +54,15 @@ class LeftMenuVC: UIViewController,WebServiceDelegate {
         super.viewWillAppear(animated)
         
         self.zoneView.alpha = 0
-        menuTableView?.reloadData()
+        zoneTableView?.reloadData()
     }
     
     // MARK: -  UITableViewDataSource
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//     //   return (tableView == self.menuTableView) ?(NSUserDefaults.IsUserLoggedIn()) ?itemsAfterLogin.count:itemsBeforeLogin.count:itemsZones.count
-//        return 5
-//    }
+  //  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     //   return (tableView == self.menuTableView) ?(NSUserDefaults.IsUserLoggedIn()) ?//itemsAfterLogin.count:itemsBeforeLogin.count:itemsZones.count
+      //  return 5
+    //}
 //
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell: MenuTableViewCell? = tableView.dequeueReusableCell(withIdentifier: String(describing: MenuTableViewCell()), for: indexPath as IndexPath) as? MenuTableViewCell
@@ -65,10 +85,19 @@ class LeftMenuVC: UIViewController,WebServiceDelegate {
     
     // MARK: -  UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let registerVC = self.storyboard!.instantiateViewController(withIdentifier: "RegisterVC") as! RegisterVC
+        let navController = UINavigationController(rootViewController: registerVC)
         
-        if (tableView == self.menuTableView) {
+        //navController.setViewControllers([secondViewController!], animated:true)
+        
+      //  self.revealViewController().pushFrontViewController(navController, animated: true)
+        
+        
+        self.revealViewController().present(navController, animated: true, completion: nil)
+
+       // if (tableView == self.menuTableView) {
        //     let strOption: String = (NSUserDefaults.IsUserLoggedIn()) ?itemsAfterLogin[indexPath.row]:itemsBeforeLogin[indexPath.row]
             
               /*  switch strOption {
@@ -169,7 +198,7 @@ class LeftMenuVC: UIViewController,WebServiceDelegate {
                 break
             }
         }*/
-        }
+      //  }
     }
     
 //    @IBAction func backAction(sender: AnyObject) {
